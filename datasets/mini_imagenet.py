@@ -15,14 +15,26 @@ class MiniImageNet(Dataset):
   def __init__(self, root_path, split='train', image_size=84, 
                normalization=True, transform=None):
     super(MiniImageNet, self).__init__()
-    split_dict = {'train': 'train_phase_train',        # standard train
-                  'val': 'train_phase_val',            # standard val
-                  'trainval': 'train_phase_trainval',  # standard train and val
-                  'test': 'train_phase_test',          # standard test
-                  'meta-train': 'train_phase_train',   # meta-train
-                  'meta-val': 'val',                   # meta-val
-                  'meta-test': 'test',                 # meta-test
-                 }
+                 
+    # split_dict = {'train': 'train_phase_train',        # standard train
+    #               'val': 'train_phase_val',            # standard val
+    #               'trainval': 'train_phase_trainval',  # standard train and val
+    #               'test': 'train_phase_test',          # standard test
+    #               'meta-train': 'train_phase_train',   # meta-train
+    #               'meta-val': 'val',                   # meta-val
+    #               'meta-test': 'test',                 # meta-test
+    #              }
+    #   Updating the file names with new database
+    split_dict = {
+            'train': 'miniImageNet_category_split_train_phase_train',
+            'val': 'miniImageNet_category_split_train_phase_val',
+            'test': 'miniImageNet_category_split_test',
+            'meta-train': 'miniImageNet_category_split_train_phase_train',  # Assuming the same as 'train' split
+            'meta-val': 'miniImageNet_category_split_val',
+            'meta-test': 'miniImageNet_category_split_test'
+        }
+
+                 
     split_tag = split_dict[split]
 
     split_file = os.path.join(root_path, split_tag + '.pickle')
